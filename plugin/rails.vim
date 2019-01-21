@@ -1,5 +1,16 @@
 function! s:CheckForRails()
-  echom "THIS IS A TEST"
+  let current_directory = fnamemodify(bufname("%"), ":p:h")
+
+  while current_directory !=# '/'
+    if !empty(glob(current_directory . '/bin/rails'))
+      let b:rails_root = current_directory
+      return b:rails_root
+    else
+      let current_directory = fnamemodify(current_directory, ":h")
+    endif
+  endwhile
+
+  return -1
 endfunction
 
 autocmd BufNewFile,BufRead *.rb,*.haml,*.yaml call <SID>CheckForRails()
