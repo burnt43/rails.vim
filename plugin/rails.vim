@@ -4,6 +4,7 @@ function! s:CheckForRails()
   while current_directory !=# '/'
     if !empty(glob(current_directory . '/bin/rails'))
       let b:rails_root = current_directory
+      doautocmd User RailsLoaded
       return b:rails_root
     else
       let current_directory = fnamemodify(current_directory, ":h")
