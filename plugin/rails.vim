@@ -14,4 +14,4 @@ function! s:CheckForRails()
   return -1
 endfunction
 
-autocmd BufNewFile,BufRead *.rb,*.haml,*.yaml call <SID>CheckForRails()
+autocmd BufNewFile,BufRead *.rb,*.haml,*.yaml,*.js call <SID>CheckForRails()
